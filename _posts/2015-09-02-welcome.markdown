@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Welcome"
+date: 2015-09-02T15:47:15+05:30
+author: Swathi Venkatachala
+comments: true
+tags:
+- blog
+- jekyll
+- gh-pages
+- migrate from blogger
+---
+
+Welcome!
+I've just migrated all the posts from my previous blog, hosted by Blogger,
+[Techie(S)pArK](http://femgeekz.blogspot.com) to this new site.
+
+*Variety is the spice of life!*
+
+So, my new blog here will all be about :
+<blockquote>
+Tech, Art, Yoga, Biking, Books, Tea, Music, Quick bites, Self-help,
+Entrepreneurial, Comics, Science, Talks and may be a bit of feminism and sarcasm!
+</blockquote>
+
+Please note that, this site is still a work in progress.
+
+Happy Reading! :)
+
+~Swatz
