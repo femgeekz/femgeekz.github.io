@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Getting Started With ANTLR:Basics</title>
+    <meta name="description" content="Learn. Unlearn. Relearn.
+">
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="" href="/atom.xml">    
+<link rel="canonical" href="http://femgeekz.github.io/2012/06/06/getting-started-with-antlrbasics.html">
+</head>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-67247971-1', 'femgeekz.github.io');
+ga('send', 'pageview');
+
+</script>
+
+
+<body>
+
+<header class="site-header">
+
+	<div class="wrapper">
+
+		<a class="site-title" href="/">Ramble On</a>
+
+		<nav class="site-nav">
+			<a href="#" class="menu-icon">
+				<svg viewBox="0 0 18 15">
+					<path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+					<path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+					<path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+				</svg>
+			</a>
+
+			<div class="trigger">
+				
+				
+				<a class="page-link" href="/about/">About</a>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</nav>
+
+	</div>
+
+</header>
+
+
+<div class="page-content">
+	<div class="wrapper">
+		<div class="post">
+
+	<header class="post-header">
+		<h1 class="post-title">Getting Started With ANTLR:Basics</h1>
+		<p class="post-meta">Jun 6, 2012 • Swathi Venkatachala</p>
+		<p class="post-meta"> 
+		
+    	Tags:
+		
+		<a href="http://femgeekz.github.io/tag/Basics" title="Index for Basics">Basics</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/ANTLR" title="Index for ANTLR">ANTLR</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/getting started on ANTLR" title="Index for getting started on ANTLR">getting started on ANTLR</a>
+		
+		</p>
+	</header>
+
+	<article class="post-content">
+		<div dir="ltr" style="text-align: left;" trbidi="on"><span class="Apple-style-span" style="color: #fff2cc; font-family: Verdana, sans-serif;"></span><br /><div style="line-height: 20px;"><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">Yeah! It's after a lapse of a month or so that there is a post in this blog! :)<br />Well, this post drives you towards the basics of ANTLR. Previously, we had learnt about setting up of ANTLR as an external tool.<br />RECAP! It's here: &nbsp;&nbsp;<a href="http://femgeekz.blogspot.in/2012/06/antlr-as-external-tool-in-eclipse-on.html">ANTLR External Tool</a><br />:)<br />So, here we go.... &nbsp;<br /><b>&nbsp;&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>What is ANTLR?</b>• ANother Tool for Language Recognition, is a language tool that provides a framework for constructing recognizers, interpreters, compilers, and translators from grammatical descriptions containing actions.</span><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>&nbsp;&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>What can be the target languages? &nbsp;</b></span><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">&nbsp;&nbsp;</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• Action Script,&nbsp;Ada&nbsp;&nbsp;</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• C<br />• C#; C#2<br />• C#3<br />• D<br />• Emacs ELisp<br />• Objective C<br />• Java<br />• Java Script<br />• Python<br />• Ruby<br />• Perl6<br />• Perl<br />• PHP<br />• Oberon<br />• Scala<br /><b>&nbsp;&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>What does ANTLR support?</b>• Tree construction<br />• Error recovery<br />• Error handling<br />• Tree walking<br />• Translation<br /><b>&nbsp;&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>What environment does it support? &nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">ANTLRWorks is the IDE for ANTLR. It is the graphical&nbsp;</span><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">grammar editor and debugger, written by Jean Bovet using Swing.<br /><b><br /></b></span></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>What for ANTLR can be used? &nbsp;</b><br />• ""REAL"" programming languages&nbsp;&nbsp;</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• domain-specific languages [DSL]<br /><b>&nbsp;&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>Who is using ANTLR?</b><br />• Programming languages :Boo, Groovy, Mantra, Nemerle, XRuby etc.&nbsp;&nbsp;</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• Other Tools: HIbernate, Intellij IDEA, Jazillian, JBoss Rules, Keynote(Apple), WebLogic(Oracle) etc.<b><br /></b></span></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">&nbsp;&nbsp;</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>Where is that you can look for ANTLR?&nbsp;</b></span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">You &nbsp;can always follow here<a href="http://www.blogger.com/%20http://www.antlr.org%20" style="text-decoration: none;">&nbsp;http://www.antlr.org&nbsp;</a>• to download ANTLR and ANTLRWorks, which are free and open source</span></div><div style="font-size: 15px;"><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• docs,articles,wiki,mailing list,examples....</span></div><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><span class="Apple-style-span" style="font-size: 15px;">&nbsp;You can catch everything here!</span><br /><br /><b>Row your Boat....</b></span><br /><div style="font-size: 15px;"></div></div><ul style="line-height: 1.4; list-style-image: initial; list-style-position: initial; list-style-type: disc; margin-bottom: 0.5em; margin-left: 0px; margin-right: 0px; margin-top: 0.5em; padding-bottom: 0px; padding-left: 2.5em; padding-right: 2.5em; padding-top: 0px; text-align: left;"><li style="border-bottom-style: none; border-color: initial; border-left-style: none; border-right-style: none; border-top-color: initial; border-top-style: none; border-width: initial; margin-bottom: 0.25em; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-indent: 0px;"><u><span style="font-family: Georgia, 'Times New Roman', serif;">Basic terms</span></u></li></ul><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• <b>Lexer</b> : converts a stream of characters to a stream of tokens.<br />• <b>Parser</b> : processes of tokens, possibly creating AST<br />• <b>Abstract Syntax Tree(AST)</b>: an intermediate tree representation of the parsed input that is simpler to process than the stream of tokens. It can as well be processed multiple times.<br />• <b>Tree Parser</b>: It processes an AST<br />• <b>String Template</b>: a library that supports using templates with placeholders for outputting text &nbsp;&nbsp;</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><br /></span><br /><ul style="line-height: 1.4; list-style-image: initial; list-style-position: initial; list-style-type: disc; margin-bottom: 0.5em; margin-left: 0px; margin-right: 0px; margin-top: 0.5em; padding-bottom: 0px; padding-left: 2.5em; padding-right: 2.5em; padding-top: 0px; text-align: left;"><li style="border-bottom-style: none; border-color: initial; border-left-style: none; border-right-style: none; border-top-color: initial; border-top-style: none; border-width: initial; margin-bottom: 0.25em; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; text-indent: 0px;"><u><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">General Steps</span></u></li></ul><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">• Write Grammar in one or more files<br />• Write string templates[optional]<br />• Debug your grammar with ANTLRWorks<br />• Generate classes from grammar<br />• Write an application that uses generated classes<br />• Feed the application text that conforms to the grammar<br /><b><br /></b></span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><b>A Bit Further....</b><br /></span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">Lets write a simple grammar which consists of<br />• Lexer<br />• Parser<br />Lexer: Breaks the input stream into tokens<br />Lets take the example of simple declaration type in C of the form "int a,b;" or "int a;" and same with float.</span><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">As we see we can write lexer as follows:</span><br /><span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"><br /></span><br /><span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">//TestLexer.g<br /><i>grammar TestLexer; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</i></span><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"><i>ID&nbsp; : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'a'..'z'|'A'..'Z')*; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COMMA: ','; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i></span><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"><i>SEMICOLON:';'; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</i></span><br /><i><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">DATATYPE: 'int' | 'float';</span></i><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"><i><br /></i></span><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"><i><br /></i></span><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">As we could see, these were the characters that were to be converted to tokens. &nbsp;&nbsp;</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">So, now lets write some rules which processes these tokens generated and may it create a parse tree accordingly.</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;"><br /></span><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br /><span class="Apple-style-span" style="font-size: x-small;">//TestParser.g<br />grammar TestParser;<br />options {language : Java;}<br />decl:DATATYPE ID (',' ID)* ; </span>&nbsp; &nbsp; &nbsp;</span><br /><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">Running ANTLR on the grammar just generates the lexer and parser,TestParser and TestLexer. To actually try the grammar on some input, we</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">need a test rig with a main( ) method as follows:</span><br /><br /><span class="Apple-style-span" style="font-size: x-small;"><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">// Test.java<br />import org.antlr.runtime.*;<br />public class Test {<br /><br />public static void main(String[] args) throws Exception {<br /><br />// Create an input character stream from standard in<br />ANTLRFileStream input = new ANTLRFileStream("input"); // give path to the file input<br /><br />// Create an ExprLexer that feeds from that stream<br />TestLexer lexer = new TestLexer(input);<br />// Create a stream of tokens fed by the lexer<br />CommonTokenStream tokens = new CommonTokenStream(lexer);<br />// Create a parser that feeds off the token stream<br />TestParser parser = new TestParser(tokens);<br />// Begin parsing at rule decl<br />parser.decl();<br />}</span><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">}</span></span><br /><br /><br />We shall see how to create<span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">&nbsp;an AST and walk over the tree in the next blog post...</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif;">Happy learning....! :)</span><br /><span class="Apple-style-span" style="font-family: Georgia, 'Times New Roman', serif; font-size: x-small;"><br /></span><br /><br /><br /><br /><div style="color: #333333; font-size: 15px; line-height: 20px; text-align: left;"></div><span class="Apple-style-span" style="color: #fff2cc; font-family: Verdana, sans-serif;"></span></div>
+	</article>
+
+</div>
+
+
+		
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+   var disqus_shortname = 'femgeekz';
+// var disqus_developer = 1; // Comment out when the site is live
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+ var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+ dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+	</div>
+</div>
+
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ramble On</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Ramble On</li>
+          <li><a href="mailto:swatzdev@gmail.com">swatzdev@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/SwathiMystery">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">SwathiMystery</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/idevnull">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">idevnull</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Learn. Unlearn. Relearn.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>

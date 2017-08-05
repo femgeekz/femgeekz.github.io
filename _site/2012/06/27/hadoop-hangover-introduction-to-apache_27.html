@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hadoop Hangover &#58; Introduction To Apache Bigtop and Installing Hive, HBase and Pig</title>
+    <meta name="description" content="Learn. Unlearn. Relearn.
+">
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="" href="/atom.xml">    
+<link rel="canonical" href="http://femgeekz.github.io/2012/06/27/hadoop-hangover-introduction-to-apache_27.html">
+</head>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-67247971-1', 'femgeekz.github.io');
+ga('send', 'pageview');
+
+</script>
+
+
+<body>
+
+<header class="site-header">
+
+	<div class="wrapper">
+
+		<a class="site-title" href="/">Ramble On</a>
+
+		<nav class="site-nav">
+			<a href="#" class="menu-icon">
+				<svg viewBox="0 0 18 15">
+					<path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+					<path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+					<path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+				</svg>
+			</a>
+
+			<div class="trigger">
+				
+				
+				<a class="page-link" href="/about/">About</a>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</nav>
+
+	</div>
+
+</header>
+
+
+<div class="page-content">
+	<div class="wrapper">
+		<div class="post">
+
+	<header class="post-header">
+		<h1 class="post-title">Hadoop Hangover &#58; Introduction To Apache Bigtop and Installing Hive, HBase and Pig</h1>
+		<p class="post-meta">Jun 27, 2012 • Swathi Venkatachala</p>
+		<p class="post-meta"> 
+		
+    	Tags:
+		
+		<a href="http://femgeekz.github.io/tag/pig" title="Index for pig">pig</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/hbase" title="Index for hbase">hbase</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/hive" title="Index for hive">hive</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/Apache Bigtop" title="Index for Apache Bigtop">Apache Bigtop</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/getting started" title="Index for getting started">getting started</a> • 
+		
+		
+		<a href="http://femgeekz.github.io/tag/Apache Hadoop" title="Index for Apache Hadoop">Apache Hadoop</a>
+		
+		</p>
+	</header>
+
+	<article class="post-content">
+		<div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-family: 'Trebuchet MS', sans-serif;">In the previous post we learnt how easy it was to install Hadoop with Apache Bigtop! </span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">We know its not just Hadoop and there are sub-projects around the table! So, lets have a look at how to install Hive, Hbase and Pig in this post.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Before rowing your boat</b>...</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Please follow the previous post and get ready with Hadoop installed!</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Follow the link for previous post:</span><br /><a href="http://femgeekz.blogspot.in/2012/06/hadoop-hangover-introduction-to-apache.html" style="color: #3465a4;"><span style="font-family: 'Trebuchet MS', sans-serif;">http://femgeekz.blogspot.in/2012/06/hadoop-hangover-introduction-to-apache.html</span></a><br /><span style="font-family: 'Trebuchet MS', sans-serif;">also, the same can be found at DZone, developer site:&nbsp;<span style="background-color: white;"></span><span style="background-color: white;"><a href="http://www.dzone.com/links/hadoop_hangover_introduction_to_apache_bigtop_and.html">http://www.dzone.com/links/hadoop_hangover_introduction_to_apache_bigtop_and.html</a></span></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>All Set</b>?? Great! Head On..</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Make sure all the services of Hadoop are running. Namely,  JobTracker,  SecondaryNameNode, TaskTracker, DataNode and NameNode. [standalone mode]</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Hive with Bigtop</b>:</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">The steps here are almost the same as Installing Hive as a separate project.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">However, few steps are reduced.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">The Hadoop installed in the previous post is Release 1.0.1</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">We had installed Hadoop with the following command</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">sudo apt-get install hadoop\*</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 1</b>:<b> Installing Hive</b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">We have installed Bigtop 0.3.0, and so issuing the following command installs all the hive components.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">ie. hive, hive-metastore, hive-server. The daemons names are different in Bigtop 0.3.0.</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">sudo apt-get install hive\*</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">This installs all the hive components. After installing, the scripts must be able to create <i>/tmp </i> and <i><a href="http://www.blogger.com/usr/hive/warehouse" style="color: #3465a4;">/usr/hive/warehouse</a></i><i></i>and HDFS doesn't allow these to be created while installing as it is unaware of the path to Java. So, create the directories if not created and grant the execute permissions. </span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">In the hadoop directory, ie. <a href="http://www.blogger.com/usr/lib/hadoop/" style="color: #3465a4;">/usr/lib/hadoop/</a></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><i>bin/hadoop fs -mkdir /tmp<br />bin/hadoop fs -mkdir <a href="http://www.blogger.com/user/hive/warehouse" style="color: #3465a4;">/user/hive/warehouse</a></i><i><br />bin/hadoop -chmod g+x /tmp<br />bin/hadoop -chmod g+x <a href="http://www.blogger.com/user/hive/warehouse" style="color: #3465a4;">/user/hive/warehouse</a></i></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><i></i><b>Step 2</b>: The alternative directories could be<i><a href="http://www.blogger.com/var/run/hive" style="color: #3465a4;">/var/run/hive</a></i><i></i>and<i><a href="http://www.blogger.com/var/lock/subsys" style="color: #3465a4;">/var/lock/subsys</a></i></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><i>sudo mkdir <a href="http://www.blogger.com/var/run/hive" style="color: #3465a4;">/var/run/hive</a></i><i><br />sudo mkdir <a href="http://www.blogger.com/var/lock/subsys" style="color: #3465a4;">/var/lock/subsys</a></i></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><i></i><b>Step 3</b>: Start the hive server, a daemon</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><i>sudo <a href="http://www.blogger.com/etc/init.d/hive-server" style="color: #3465a4;">/etc/init.d/hive-server</a></i><i> start</i></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-Pj5Eeew4u5E/T-rYk7QABCI/AAAAAAAACMA/dGkkG3Y6dg8/s1600/hiveserver.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="106" src="http://3.bp.blogspot.com/-Pj5Eeew4u5E/T-rYk7QABCI/AAAAAAAACMA/dGkkG3Y6dg8/s640/hiveserver.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">start hive-server</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 4</b>: Running Hive</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Go-to the directory <i><a href="http://www.blogger.com/usr/lib/hive" style="color: #3465a4;">/usr/lib/hive</a></i>.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">See the Image below:</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">bin/hive</span></i><br /><table cellpadding="0" cellspacing="0" class="tr-caption-container" style="float: left; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-GvsvxOdvLmE/T-rYSTN89gI/AAAAAAAACLA/Atrq-z9tDLw/s1600/bin-hive.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="112" src="http://4.bp.blogspot.com/-GvsvxOdvLmE/T-rYSTN89gI/AAAAAAAACLA/Atrq-z9tDLw/s640/bin-hive.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">bin/hive</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><b></b><br /><b></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b><br /></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b><br /></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b><br /></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b><br /></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b><br /></b></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 5</b>: Operations on Hive</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-KaiiZgeU7Pc/T-rYh1p-fWI/AAAAAAAACL4/GqYjzq-ZEK0/s1600/hiveoperations.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="326" src="http://1.bp.blogspot.com/-KaiiZgeU7Pc/T-rYh1p-fWI/AAAAAAAACL4/GqYjzq-ZEK0/s640/hiveoperations.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Basic hive operations</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>HBase with Bigtop</b>:</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Installing Hbase is similar to Hive.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 1</b>: Installing HBase</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">sudo apt-get install hbase\*</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-YOo_Qa0lj6Y/T-rYVxLPs1I/AAAAAAAACLQ/I0xTrWZBMME/s1600/hbase.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="108" src="http://1.bp.blogspot.com/-YOo_Qa0lj6Y/T-rYVxLPs1I/AAAAAAAACLQ/I0xTrWZBMME/s640/hbase.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">hbase-0.92.0</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 2</b>: Starting HMaster</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">sudo service hbase-master start</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-gpLvyg9bLfE/T-rYUh5A0xI/AAAAAAAACLI/nqCzOiThomo/s1600/hbase+start.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="238" src="http://3.bp.blogspot.com/-gpLvyg9bLfE/T-rYUh5A0xI/AAAAAAAACLI/nqCzOiThomo/s640/hbase+start.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Starting HMaster</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-zTZgZwOW6gA/T-rYXyqs2cI/AAAAAAAACLY/mncnm0FfDgA/s1600/hbasejps.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="166" src="http://2.bp.blogspot.com/-zTZgZwOW6gA/T-rYXyqs2cI/AAAAAAAACLY/mncnm0FfDgA/s640/hbasejps.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">jps (HMaster started)</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 3</b>: Starting HBase shell</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">hbase shell</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-sJmp3xMIjeg/T-rYZjCD7zI/AAAAAAAACLg/a0iCv77JdQk/s1600/hbasetable.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="226" src="http://4.bp.blogspot.com/-sJmp3xMIjeg/T-rYZjCD7zI/AAAAAAAACLg/a0iCv77JdQk/s640/hbasetable.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">start HBase shell</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 4</b>: HBase Operations</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-dRbZcGCKPTY/T-rYcZFqztI/AAAAAAAACLo/WYgOFLI1cSo/s1600/hbasetabop.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="196" src="http://2.bp.blogspot.com/-dRbZcGCKPTY/T-rYcZFqztI/AAAAAAAACLo/WYgOFLI1cSo/s640/hbasetabop.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">HBase table operations</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-MfFCzBZQ_ec/T-rYenSTefI/AAAAAAAACLw/GpkC-B6J64M/s1600/hbasetabop2.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="304" src="http://2.bp.blogspot.com/-MfFCzBZQ_ec/T-rYenSTefI/AAAAAAAACLw/GpkC-B6J64M/s640/hbasetabop2.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">list,scan,get,describe In HBase</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><b><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></b><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><strike></strike><b>Pig with Bigtop</b>:</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Installing Pig is similar too.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 1</b>: Installing Pig</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">sudo apt-get install pig</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-uOURSOBoVn4/T-rYq5PUnnI/AAAAAAAACMY/RR-XzS3smjs/s1600/pig.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="140" src="http://1.bp.blogspot.com/-uOURSOBoVn4/T-rYq5PUnnI/AAAAAAAACMY/RR-XzS3smjs/s640/pig.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Installing Pig</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 2</b>: Moving a file to HDFS</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-rsjyijib_Hw/T-rYux6ntDI/AAAAAAAACMg/QQKY15q02qA/s1600/pighdfsfile.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="364" src="http://2.bp.blogspot.com/-rsjyijib_Hw/T-rYux6ntDI/AAAAAAAACMg/QQKY15q02qA/s640/pighdfsfile.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Moving a tab separated file "book.csv" to HDFS</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 3</b>: Installed Pig-0.9.2</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-WRDwNTMwHac/T-rY0ED1deI/AAAAAAAACMw/HKoTnHF81Q0/s1600/pigls.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="108" src="http://4.bp.blogspot.com/-WRDwNTMwHac/T-rY0ED1deI/AAAAAAAACMw/HKoTnHF81Q0/s640/pigls.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Pig installed Pig-0.9.2</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 4</b>: Starting the grunt shell</span><br /><i><span style="font-family: 'Trebuchet MS', sans-serif;">pig</span></i><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:&nbsp;</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-ZKaoNbFWP1s/T-rY9KUONoI/AAAAAAAACNA/edBR2Rg9J60/s1600/pigstart.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="110" src="http://2.bp.blogspot.com/-ZKaoNbFWP1s/T-rY9KUONoI/AAAAAAAACNA/edBR2Rg9J60/s640/pigstart.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Starting Pig</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><b>Step 5</b>: Pig Basic Operations</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-beR0lK9i48g/T-rY6wYpkOI/AAAAAAAACM4/Pg6Gb_AbJPk/s1600/pigop.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="298" src="http://1.bp.blogspot.com/-beR0lK9i48g/T-rY6wYpkOI/AAAAAAAACM4/Pg6Gb_AbJPk/s640/pigop.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Basic Pig Operations</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Image:</span><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-sW8AWUnB7fg/T-rYw5ArY4I/AAAAAAAACMo/iadqLklSAPY/s1600/pigjob.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><span style="font-family: 'Trebuchet MS', sans-serif;"><img border="0" height="360" src="http://4.bp.blogspot.com/-sW8AWUnB7fg/T-rYw5ArY4I/AAAAAAAACMo/iadqLklSAPY/s640/pigjob.png" width="640" /></span></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><span style="font-family: 'Trebuchet MS', sans-serif;">Job Completion</span></td></tr></tbody></table><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">We saw that is it possible to install the subprojects and work with Hadoop, with no issues.</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Apache Bigtop has its own spark! :)</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">There is a release coming BIGTOP-0.4.0 which is supposedly to fix the following issues:</span><br /><a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12318889&amp;styleName=Html&amp;projectId=12311420" style="color: #3465a4;"><span style="font-family: 'Trebuchet MS', sans-serif;">https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12318889&amp;styleName=Html&amp;projectId=12311420</span></a><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Source and binary files:</span><br /><a href="http://people.apache.org/~rvs/bigtop-0.4.0-incubating-RC0" style="color: #3465a4;"><span style="font-family: 'Trebuchet MS', sans-serif;">http://people.apache.org/~rvs/bigtop-0.4.0-incubating-RC0</span></a><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Maven staging repo:</span><br /><a href="https://repository.apache.org/content/repositories/orgapachebigtop-279" style="color: #3465a4;"><span style="font-family: 'Trebuchet MS', sans-serif;">https://repository.apache.org/content/repositories/orgapachebigtop-279</span></a><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Bigtop's KEYS file containing PGP keys we use to sign the release:</span><br /><a href="http://svn.apache.org/repos/asf/incubator/bigtop/dist/KEYS" style="color: #3465a4;"><span style="font-family: 'Trebuchet MS', sans-serif;">http://svn.apache.org/repos/asf/incubator/bigtop/dist/KEYS</span></a><br /><span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Let us see how to install other sub-projects in the coming posts!</span><br /><span style="font-family: 'Trebuchet MS', sans-serif;">Until then, Happy Learning!! :):)</span></div>
+	</article>
+
+</div>
+
+
+		
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+   var disqus_shortname = 'femgeekz';
+// var disqus_developer = 1; // Comment out when the site is live
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+ var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+ dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+	</div>
+</div>
+
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ramble On</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Ramble On</li>
+          <li><a href="mailto:swatzdev@gmail.com">swatzdev@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/SwathiMystery">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">SwathiMystery</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/idevnull">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">idevnull</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Learn. Unlearn. Relearn.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
