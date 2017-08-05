@@ -4,7 +4,7 @@
   <title>Ramble On</title>
   <link href="http://femgeekz.github.io/"/>
   <link type="application/atom+xml" rel="self" href="http://femgeekz.github.io/atom.xml"/>
-  <updated>2017-08-05T18:30:37+05:30</updated>
+  <updated>2017-08-05T18:56:01+05:30</updated>
   <id>http://femgeekz.github.io/</id>
   <author>
     <name>Swathi Venkatachala</name>
@@ -21,7 +21,7 @@
       <name>Swathi Venkatachala</name>
       <uri>http://femgeekz.github.io/</uri>
     </author>
-    <content type="html">&lt;p&gt;Shopify had earlier released an app called ‘Advanced Cash On Delivery App’ which is crafted for
+    <content type="html">&lt;p&gt;Shopify had earlier released an app called &lt;code class=&quot;highlighter-rouge&quot;&gt;Advanced Cash On Delivery App&lt;/code&gt; which is crafted for
 Indian merchants, where COD is widely used payment method. The app is enriched with features like&lt;/p&gt;
 
 &lt;ul&gt;
