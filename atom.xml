@@ -1,0 +1,31 @@
+---
+layout: nil
+---
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>Ramble On</title>
+  <link href="http://femgeekz.github.io/"/>
+  <link type="application/atom+xml" rel="self" href="http://femgeekz.github.io/atom.xml"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>http://femgeekz.github.io/</id>
+  <author>
+    <name>Swathi Venkatachala</name>
+    <email>swatzdev@gmail.com</email>
+  </author>
+
+  {% for post in site.posts %}
+  <entry>
+    <id>http://femgeekz.github.io{{ post.id }}</id>
+    <link type="text/html" rel="alternate" href="http://femgeekz.github.io{{ post.url }}"/>
+    <title>{{ post.title | xml_escape }}</title>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>Swathi Venkatachala</name>
+      <uri>http://femgeekz.github.io/</uri>
+    </author>
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {% endfor %}
+ 
+</feed>

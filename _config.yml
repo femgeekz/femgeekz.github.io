@@ -1,1 +1,32 @@
-theme: jekyll-theme-cayman
+# Site settings
+title: Ramble On
+email: swatzdev@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+    Learn. Unlearn. Relearn.
+# baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://femgeekz.github.io" # the base hostname & protocol for your site
+author: Swathi Venkatachala    
+twitter_username: idevnull
+github_username:  SwathiMystery
+
+# Gems    
+gems:
+    - jekyll-feed
+    - jekyll-paginate 
+# Google Analytics settings
+ga: 'UA-67247971-1'
+safe: true
+
+#future: true
+
+# Pagination
+paginate: 6
+paginate_path: "/page:num/"    
+published: true
+
+# Feed settings    
+feed:
+    path: feed.xml
+
+# Build settings
+markdown: kramdown
