@@ -12,7 +12,7 @@ tags:
 - Advanced Cash On Delivery
 ---
 
-Shopify had earlier released an app called 'Advanced Cash On Delivery App' which is crafted for
+Shopify had earlier released an app called `Advanced Cash On Delivery App` which is crafted for
 Indian merchants, where COD is widely used payment method. The app is enriched with features like
 
 - set a price range for cash on delivery orders.
