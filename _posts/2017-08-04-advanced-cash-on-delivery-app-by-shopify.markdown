@@ -106,7 +106,7 @@ if(document.URL.indexOf('?previous_step=shipping_method&step=payment_method')>=0
   			e.parentNode.removeChild(e);
 		});		
 
-var shippingMethod = document.getElementsByClassName('review-block__content')[1].innerText;
+var shippingMethod = document.getElementsByClassName('review-block__content')[2].innerText;
 console.log(shippingMethod);
 if(shippingMethod == 'COD Shipping · Rs. 60.00') {
 console.log("COD enabled. Card Payment disabled");
